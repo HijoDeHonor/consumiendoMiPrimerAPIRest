@@ -39,18 +39,3 @@ fetch(URL, {
 function desplegar() {
     document.getElementById("nuevaPelicula").classList.toggle("show");
 }
-
-
-
-document.addEventListener('click', function (event) {
-    if (!event.target.matches('.dropbutton')) {
-        var droptiene = document.getElementsByClassName('dropdown-content');
-        var i;
-        for (i = 0; i < droptiene.length; i++) {
-            var opendroptiene = droptiene[i];
-            if (opendroptiene.classList.contains('show')) {
-                opendroptiene.classList.remove('show');
-            }
-        }
-    }
-});

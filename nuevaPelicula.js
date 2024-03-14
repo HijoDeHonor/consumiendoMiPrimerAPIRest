@@ -1,22 +1,22 @@
 function nuevaPelicula() {
-    let title = document.getElementById("title");
-    let director = document.getElementById("director");
-    let year = document.getElementById("year");
-    let rating = document.getElementById("rating");
-    let imgURL = document.getElementById("imgURL");
+    let newtitle = document.getElementById("title").value;
+    let newdirector = document.getElementById("director").value;
+    let newyear = parseInt(document.getElementById("year").value);
+    let newrating = parseInt(document.getElementById("rating").value);
+    let newimgURL = document.getElementById("imgURL").value;
     let newMovie = {
-        title: title,
-        director: director,
-        year: year,
-        rating: rating,
-        imgURL: imgURL
+        title: newtitle,
+        director: newdirector,
+        year: newyear,
+        rating: newrating,
+        imgURL: newimgURL
     };
-    fetch(URL, {
+    fetch(URL , {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: json.stringify(nuevaPelicula)
+        body: JSON.stringify(newMovie)
     })
         .then(res => {
             if (!res.ok) {
