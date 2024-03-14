@@ -1,19 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PELICULAS INV</title>
 </head>
+
 <body>
     <h1>
         Peliculas InV
     </h1><br>
-    <div id="container" >
-      
+    <div class="dropdown">
+        <button onclick="desplegar()" class="dropbutton">Tenes una peli nueva?</button>
+        <div class="dropdown-content" id="nuevaPelicula">
+
+            <input type="text" placeholder="Nombre de la película" id="title"><br>
+            <input type="text" placeholder="Nombre del Director" id="director"><br>
+            <input type="text" placeholder="Año de estreno" id="year"><br>
+            <input type="text" placeholder="Rating" id="Rating"><br>
+            <input type="text" placeholder="Enlace de imagen" id="imgURL"><br>
+            <button onclick="nuevaPelicula()">Agregar película</button>
+
+        </div>
     </div>
+    <br>
+    <div id="container">
+
+    </div>
+
+
 
     <script src="index.js"></script>
 </body>
+
 </html>

@@ -13,23 +13,44 @@ fetch(URL, {
 
 
         const moviesArr = data;
-        moviesArr.foreach((element) => {
-            const title = element.title
-            const image = element.imgURL
-            const director = element.director
+        let poster = '';
 
-            const poster =
+        moviesArr.forEach((element) => {
+            const title = element.title;
+            const image = element.imgURL;
+            const director = element.director;
+
+            poster +=
                 `
                 <div>
                     <img src="${image}">
                     <h2>${title}</h2>
                     <small>${director}</small>
-                </div>
-            `
-            document.getElementById('container').innerHTML += poster
-        })
+                </div>`;
+
+        });
+        document.getElementById('container').innerHTML = poster;
     })
 
     .catch(err => {
         console.log(err)
     });
+
+function desplegar() {
+    document.getElementById("nuevaPelicula").classList.toggle("show");
+}
+
+
+
+document.addEventListener('click', function (event) {
+    if (!event.target.matches('.dropbutton')) {
+        var droptiene = document.getElementsByClassName('dropdown-content');
+        var i;
+        for (i = 0; i < droptiene.length; i++) {
+            var opendroptiene = droptiene[i];
+            if (opendroptiene.classList.contains('show')) {
+                opendroptiene.classList.remove('show');
+            }
+        }
+    }
+});
