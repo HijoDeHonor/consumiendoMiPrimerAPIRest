@@ -1,4 +1,4 @@
-body { 
+body {
     font-family: 'Times New Roman', Times, serif;
     background-color: blue;
     color: aliceblue;
@@ -33,7 +33,7 @@ h1 {
     max-width: 300px;
     height: 400px;
     border-radius: 5px;
-    transition: transform .5s ease; 
+    transition: transform .5s ease;
 }
 
 #container div img:hover {
@@ -43,7 +43,7 @@ h1 {
 h2 {
     margin-bottom: 20px;
     margin-top: auto;
-} 
+}
 
 .dropbutton {
     background-color: green;
@@ -54,11 +54,12 @@ h2 {
     cursor: pointer;
 }
 
-.dropbutton:hover, .dropbutton:focus{
+.dropbutton:hover,
+.dropbutton:focus {
     background-color: darkgreen;
 }
 
-.dropdown-content{
+.dropdown-content {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
@@ -67,4 +68,6 @@ h2 {
     z-index: 1;
 }
 
-.show{display: block;}
+.show {
+    display: block;
+}
