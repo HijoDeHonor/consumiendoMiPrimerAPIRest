@@ -1,5 +1,5 @@
 const URL = "http://localhost:3000/api/movies"
-
+function startWeb(){
 fetch(URL, {
     method: 'GET',
     mode: 'cors',
@@ -100,7 +100,8 @@ fetch(URL, {
     .catch(err => {
         console.log(err)
     });
-
+}
 function desplegar() {
     document.getElementById("nuevaPelicula").classList.toggle("show");
 }
+startWeb();

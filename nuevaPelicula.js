@@ -22,6 +22,7 @@ function nuevaPelicula() {
             if (!res.ok) {
                 throw new Error('Error: algo salio mal');
             }
+            startWeb();
             return res.json();
         })
         .then(data => {
