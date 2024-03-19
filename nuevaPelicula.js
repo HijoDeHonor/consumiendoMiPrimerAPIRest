@@ -1,4 +1,4 @@
-function nuevaPelicula() {
+async function nuevaPelicula() {
     let newtitle = document.getElementById("title").value;
     let newdirector = document.getElementById("director").value;
     let newyear = parseInt(document.getElementById("year").value);
@@ -11,7 +11,7 @@ function nuevaPelicula() {
         rating: newrating,
         imgURL: newimgURL
     };
-    fetch(URL , {
+    const updatedMovies = await fetch(URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -22,13 +22,14 @@ function nuevaPelicula() {
             if (!res.ok) {
                 throw new Error('Error: algo salio mal');
             }
-            startWeb();
             return res.json();
         })
         .then(data => {
-            console.log('Nueva pelicula agregada', data);
+            return data;
         })
         .catch(err => {
-            console.log(err)
+            console.log(err);
         })
+
+    return updatedMovies;
 }
