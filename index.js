@@ -7,7 +7,6 @@ function updateList(list) {
     addListeners();
     movieList.length = 0; // Limpia 'movieList' si hay elementos previos
     movieList.push(...list);
-    console.log(movieList)
     return movieList
 }
 
@@ -35,7 +34,6 @@ function updateVisualList(data) {
 
     moviesArr.forEach((element) => {
         const { Title, Director, Year, Rating, ImgURL, Id } = element
-        console.log(Title)
         poster +=
             `<div class="item" data-id="${Id}" data-title="${Title}" data-director="${Director}" data-year="${Year}" data-rating="${Rating}" data-imgURL="${ImgURL}">
                         <img src="${ImgURL}" alt="${Title}">
@@ -104,9 +102,7 @@ newMovie.addEventListener('click', async () => {
 //borra una pelicula usando el id con el que viene deleteBtn.dataset.id , y cierra el modal.
 const deleteBtn = document.getElementById("deleteBtn");
 deleteBtn.addEventListener("click", async () => {
-    console.log(deleteBtn.dataset.Id)
     const itemID = deleteBtn.dataset.Id;
-    console.log(itemID)
     let lista = await deleteMovie(itemID);
     updateList(lista);
     closeModal();
@@ -125,10 +121,7 @@ const modifyBtn = document.getElementById('modifyBtn');
 modifyBtn.addEventListener('click', () => {
     modal.showModal();
     itemID = modifyBtn.dataset.Id;
-    console.log(itemID);
-    console.log(movieList);
     const index = movieList.findIndex(movie => movie.Id === itemID);
-    console.log(index);
     if (index !== -1) {
         const preTitle = movieList[index].Title
         const preDirector = movieList[index].Director
