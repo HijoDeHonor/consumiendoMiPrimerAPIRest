@@ -1,10 +1,10 @@
-async function modifyMovie(id, title, director, year, rating, imgURL) {
-    const updatedMovies = await fetch(URL + '/' + id, {
+async function modifyMovie(Id, Title, Director, Year, Rating, ImgURL) {
+    const updatedMovies = await fetch(URL + '/' + Id, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ title, director, year, rating, imgURL })
+        body: JSON.stringify({ Title, Director, Year, Rating, ImgURL })
     })
         .then(res => {
             if (!res.ok) {

@@ -1,11 +1,13 @@
 const URL = "http://localhost:3000/api/movies"
-let moviesArr = []
+const movieList = []
 
 //refresca la lista de peliculas
 function updateList(list) {
     updateVisualList(list);
     addListeners();
-
+    movieList.length = 0; // Limpia 'movieList' si hay elementos previos
+    movieList.push(...list);
+    return movieList
 }
 
 function addListeners() {
@@ -14,9 +16,8 @@ function addListeners() {
         item.addEventListener("click", () => {
             const modal = document.getElementById('modal')
             modal.showModal();
-            deleteBtn.dataset.id = item.dataset.id;
-            modifyBtn.dataset.id = item.dataset.id;
-
+            deleteBtn.dataset.Id = item.dataset.id;
+            modifyBtn.dataset.Id = item.dataset.id;
         });
     });
 }
@@ -24,19 +25,20 @@ function addListeners() {
 
 
 
+
 //muestra la lista de peliculas 
 function updateVisualList(data) {
-    console.log(data);
-    moviesArr = data
+    console.log(data, 'data updateVisuallist');
+    let moviesArr = data;
     let poster = '';
 
     moviesArr.forEach((element) => {
-        const { title, director, year, rating, imgURL, id } = element
+        const { Title, Director, Year, Rating, ImgURL, Id } = element
         poster +=
-            `<div class="item" data-id="${id}" data-title="${title}" data-director="${director}" data-year="${year}" data-rating="${rating}" data-imgURL="${imgURL}">
-                        <img src="${imgURL}" alt="${title}">
-                        <h2>${title}</h2>
-                        <small>${director}</small>
+            `<div class="item" data-id="${Id}" data-title="${Title}" data-director="${Director}" data-year="${Year}" data-rating="${Rating}" data-imgURL="${ImgURL}">
+                        <img src="${ImgURL}" alt="${Title}">
+                        <h2>${Title}</h2>
+                        <small>${Director}</small>
                 </div>`;
     });
 
@@ -100,7 +102,7 @@ newMovie.addEventListener('click', async () => {
 //borra una pelicula usando el id con el que viene deleteBtn.dataset.id , y cierra el modal.
 const deleteBtn = document.getElementById("deleteBtn");
 deleteBtn.addEventListener("click", async () => {
-    const itemID = deleteBtn.dataset.id;
+    const itemID = deleteBtn.dataset.Id;
     let lista = await deleteMovie(itemID);
     updateList(lista);
     closeModal();
@@ -118,33 +120,25 @@ const modal = document.getElementById('modal')
 const modifyBtn = document.getElementById('modifyBtn');
 modifyBtn.addEventListener('click', () => {
     modal.showModal();
-    itemID = modifyBtn.dataset.id;
-    console.log(itemID);
-    console.log(moviesArr);
-    const index = moviesArr.findIndex(movie => movie.id === itemID);
-    console.log(index);
+    itemID = modifyBtn.dataset.Id;
+    const index = movieList.findIndex(movie => movie.Id === itemID);
     if (index !== -1) {
-        const preTitle = moviesArr[index].title
-        const preDirector = moviesArr[index].director
-        const preYear = moviesArr[index].year
-        const preRating = moviesArr[index].rating
-        const preImgURL = moviesArr[index].imgURL
+        const preTitle = movieList[index].Title
+        const preDirector = movieList[index].Director
+        const preYear = movieList[index].Year
+        const preRating = movieList[index].Rating
+        const preImgURL = movieList[index].ImgURL
         const form = document.createElement('form');
         form.id = ('modifyForm')
-        console.log(preDirector)
-        console.log(preImgURL)
-        console.log(preRating)
-        console.log(preTitle)
-        console.log(preYear)
         form.innerHTML = `
             <label for="newTitulo">Título:</label>
             <input type="text" id="newTitulo" name="titulo" value="${preTitle}" required><br>
 
-            <label for="newYear">Año:</label>
-            <input type="number" id="newYear" name="year" value="${preYear}" required><br>
-
             <label for="newDirector">Director:</label>
             <input type="text" id="newDirector" name="director" value="${preDirector}" required><br>
+
+            <label for="newYear">Año:</label>
+            <input type="number" id="newYear" name="year" value="${preYear}" required><br> 
 
             <label for="newRating">Rating:</label>
             <input type="number" id="newRating" name="rating" min="0" max="10" step="0.1" value="${preRating}" required><br>
@@ -156,13 +150,13 @@ modifyBtn.addEventListener('click', () => {
             `;
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
-            const movieId = modifyBtn.dataset.id
-            const title = document.getElementById('newTitulo').value;
-            const director = document.getElementById('newDirector').value;
-            const year = document.getElementById('newYear').value;
-            const rating = document.getElementById('newRating').value;
-            const imgURL = document.getElementById('newImgURL').value;
-            let lista = await modifyMovie(movieId, title, director, year, rating, imgURL);
+            const movieId = modifyBtn.dataset.Id
+            const Title = document.getElementById('newTitulo').value;
+            const Director = document.getElementById('newDirector').value;
+            const Year = document.getElementById('newYear').value;
+            const Rating = document.getElementById('newRating').value;
+            const ImgURL = document.getElementById('newImgURL').value;
+            let lista = await modifyMovie(movieId, Title, Director, Year, Rating, ImgURL);
             updateList(lista)
             modal.close();
         });
