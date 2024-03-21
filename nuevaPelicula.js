@@ -5,11 +5,11 @@ async function nuevaPelicula() {
     let newrating = parseInt(document.getElementById("rating").value);
     let newimgURL = document.getElementById("imgURL").value;
     let newMovie = {
-        title: newtitle,
-        director: newdirector,
-        year: newyear,
-        rating: newrating,
-        imgURL: newimgURL
+        Title: newtitle,
+        Director: newdirector,
+        Year: newyear,
+        Rating: newrating,
+        ImgURL: newimgURL
     };
     const updatedMovies = await fetch(URL, {
         method: 'POST',
